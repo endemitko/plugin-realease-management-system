@@ -1,0 +1,44 @@
+body {
+    background-color: #f0ede4 ;
+    margin: 0;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+
+}
+.header {
+    background-color: #33abdd;
+    height: 250px;
+    border-bottom: 3px solid #2c97c3;
+}
+
+.logo {
+    background-image: url('img/cr_logo.png');
+    height: 117px;
+    width: 669px;
+    border: 0;
+    margin: 0 auto;
+    position: relative;
+    top: 5px;
+
+}
+
+.button{
+    background-color: #2C97C3;
+    width: 100px;
+    height: 25px;
+    line-height: 25px;
+    vertical-align: middle;
+    text-align: center;
+    color: white;
+    margin: 0 auto;
+    font-size: 14px;
+
+}
+
+.button:hover {
+    background-color: #ffffff;
+    color: #2c97c3;
+}
+
+a {
+    text-decoration: none;
+}
