@@ -68,7 +68,7 @@ class Cache {
 		}
 
 
-		$handle = fopen($this->getPath(), "w+");
+		$handle = fopen($this->getPath(), "r+");
 		$content = fread($handle, filesize($this->getPath()));
 		fclose($handle);
 
