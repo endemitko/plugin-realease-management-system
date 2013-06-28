@@ -8,7 +8,7 @@
 
 
 class ModMapper {
-    public function get() {
+    public function getVersionsFromDisk() {
 		return array_reverse(glob(BASE_DIR . "/versions/*.txt"));
 	}
 }

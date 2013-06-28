@@ -23,12 +23,12 @@ class ModLoader {
 		$this->modMapper = $modMapper;
 	}
 
-	public function get() {
+	public function getVersions() {
 
 		/**
 		 * Load from cache
 		 */
-		$files = $this->cache->get($this->modMapper);
+		$files = $this->cache->getCachedVersions($this->modMapper);
 
 		/**
 		 * Get latest version and the others

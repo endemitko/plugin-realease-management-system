@@ -8,7 +8,7 @@ $serviceLocator = new ServiceLocator();
 
 $files = $serviceLocator->getModLoader();
 
-$versions = $files->get();
+$versions = $files->getVersions();
 
 
 ?>

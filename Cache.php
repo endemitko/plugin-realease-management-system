@@ -37,13 +37,13 @@ class Cache {
 	}
 
 
-	public function get() {
+	public function getCachedVersions() {
 
 		if($this->hasExpired()) {
 			/**
 			 * get trough mapper
 			 */
-			$contents = $this->modMapper->get();
+			$contents = $this->modMapper->getVersionsFromDisk();
 
 			file_put_contents($this->getPath(), json_encode($contents));
 
