@@ -53,7 +53,7 @@ class Cache {
 
 	public function getCachedVersions() {
 
-		if($this->hasExpired()) {
+		if($this->hasExpired() || !$this->cacheFileExists($this->getPath())) {
 			$contents = $this->modMapper->getVersionsFromDisk();
 
 			file_put_contents($this->getPath(), json_encode($contents));
@@ -72,6 +72,14 @@ class Cache {
 	{
 		$last_update = filemtime($this->getPath());
 		if($last_update + self::EXPIRATION_TIME < time())
+			return false;
+
+		return true;
+	}
+
+	private function cacheFileExists($file)
+	{
+		if(!file_exists($file))
 			return false;
 
 		return true;
