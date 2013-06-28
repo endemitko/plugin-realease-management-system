@@ -53,15 +53,13 @@ class Cache {
 
 	public function getCachedVersions() {
 
-		if(!$this->cacheFileExists($this->getPath() || $this->hasExpired())) {
+		if(!$this->cacheFileExists($this->getPath()) || $this->hasExpired()) {
 			$contents = $this->modMapper->getVersionsFromDisk();
-
 
 			if(!file_exists(BASE_DIR . "/temp/cache")) {
 				if(!file_exists(BASE_DIR . "/temp")) {
 					mkdir(BASE_DIR . "/temp");
 				}
-
 				mkdir(BASE_DIR . "/temp/cache");
 			}
 
@@ -92,18 +90,18 @@ class Cache {
 	private function hasExpired()
 	{
 		$last_update = filemtime($this->getPath());
-		if($last_update + self::EXPIRATION_TIME < time())
+
+
+		if(($last_update + self::EXPIRATION_TIME) > time()) {
 			return false;
+		}
 
 		return true;
 	}
 
 	private function cacheFileExists($file)
 	{
-		if(!file_exists($file))
-			return false;
-
-		return true;
+		return file_exists($file);
 	}
 
 
