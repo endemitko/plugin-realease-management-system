@@ -1,2 +1,2 @@
-magic-minecraft-web
+plugin-release-management-system
 ===================
