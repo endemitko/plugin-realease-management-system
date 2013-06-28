@@ -1,6 +1,6 @@
 <?php
 function make_dev_versions() {
-	file_put_contents("../versions/versions-test-" . rand(0, 3) . "." . rand(0, 3) . "." . rand(0, 3) . ".", "");
+	file_put_contents("../versions/versions-test-" . rand(0, 3) . "." . rand(0, 3) . "." . rand(0, 3) . ".txt", "");
 }
 
 for($i = 0; $i < 10; $i ++) {
