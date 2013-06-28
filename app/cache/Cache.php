@@ -56,7 +56,21 @@ class Cache {
 		if(!$this->cacheFileExists($this->getPath() || $this->hasExpired())) {
 			$contents = $this->modMapper->getVersionsFromDisk();
 
+
+			if(!file_exists(BASE_DIR . "/temp/cache")) {
+				if(!file_exists(BASE_DIR . "/temp")) {
+					mkdir(BASE_DIR . "/temp");
+				}
+
+				mkdir(BASE_DIR . "/temp/cache");
+			}
+
+
 			$handle = fopen($this->getPath(), "w+");
+
+			if(!$handle)
+				return $contents;
+
 			fwrite($handle, json_encode($contents));
 			fclose($handle);
 
@@ -72,7 +86,7 @@ class Cache {
 		$content = fread($handle, filesize($this->getPath()));
 		fclose($handle);
 
-		return json_decode(file_get_contents($this->getPath()));
+		return json_decode($content);
 	}
 
 	private function hasExpired()
