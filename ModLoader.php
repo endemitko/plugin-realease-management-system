@@ -6,17 +6,29 @@
  * 
  */
 
-require "Cache.php";
-
 class ModLoader {
+
+	/**
+	 * @var Cache
+	 */
+	private $cache;
+	/**
+	 * @var ModMapper
+	 */
+	private $modMapper;
+
+	public function __construct(Cache $cache, ModMapper $modMapper)
+	{
+		$this->cache = $cache;
+		$this->modMapper = $modMapper;
+	}
 
 	public function get() {
 
 		/**
 		 * Load from cache
 		 */
-		$cache = new Cache();
-		$files = $cache->get();
+		$files = $this->cache->get($this->modMapper);
 
 		/**
 		 * Get latest version and the others

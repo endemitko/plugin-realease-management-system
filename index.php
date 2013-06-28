@@ -1,10 +1,12 @@
 <?php
 
-require "ModLoader.php";
+require "ServiceLocator.php";
 
 DEFINE("BASE_DIR", __DIR__);
 
-$files = new ModLoader();
+$serviceLocator = new ServiceLocator();
+
+$files = $serviceLocator->getModLoader();
 
 $versions = $files->get();
 

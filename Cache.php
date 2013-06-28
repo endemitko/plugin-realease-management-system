@@ -6,15 +6,18 @@
  * 
  */
 
-require "ModMapper.php";
-
 class Cache {
 	const EXPIRATION_TIME = 3600;
 
 	private $path;
+	/**
+	 * @var ModMapper
+	 */
+	private $modMapper;
 
-	public function __construct() {
+	public function __construct(ModMapper $modMapper) {
 		$this->path = BASE_DIR . "/temp/cache/versions.json";
+		$this->modMapper = $modMapper;
 	}
 
 	/**
@@ -36,13 +39,11 @@ class Cache {
 
 	public function get() {
 
-		$mod_mapper = new ModMapper();
-
 		if($this->hasExpired()) {
 			/**
 			 * get trough mapper
 			 */
-			$contents = $mod_mapper->get();
+			$contents = $this->modMapper->get();
 
 			file_put_contents($this->getPath(), json_encode($contents));
 
