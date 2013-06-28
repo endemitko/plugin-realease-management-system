@@ -7,21 +7,31 @@
  */
 
 class Cache {
+
 	const EXPIRATION_TIME = 3600;
 
+	/**
+	 * Path to cache file
+	 *
+	 * @var string
+	 */
 	private $path;
+
 	/**
 	 * @var ModMapper
 	 */
 	private $modMapper;
 
+	/**
+	 * @param ModMapper $modMapper
+	 */
 	public function __construct(ModMapper $modMapper) {
 		$this->path = BASE_DIR . "/temp/cache/versions.json";
 		$this->modMapper = $modMapper;
 	}
 
 	/**
-	 * @return mixed
+	 * @return string
 	 */
 	public function getPath()
 	{
@@ -29,7 +39,7 @@ class Cache {
 	}
 
 	/**
-	 * @param mixed $path
+	 * @param string $path
 	 */
 	public function setPath($path)
 	{
@@ -40,9 +50,6 @@ class Cache {
 	public function getCachedVersions() {
 
 		if($this->hasExpired()) {
-			/**
-			 * get trough mapper
-			 */
 			$contents = $this->modMapper->getVersionsFromDisk();
 
 			file_put_contents($this->getPath(), json_encode($contents));
@@ -54,9 +61,6 @@ class Cache {
 			return $contents;
 		}
 
-		/**
-		 * get from cache
-		 */
 		return json_decode(file_get_contents($this->getPath()));
 	}
 

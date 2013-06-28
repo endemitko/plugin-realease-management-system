@@ -17,12 +17,22 @@ class ModLoader {
 	 */
 	private $modMapper;
 
+	/**
+	 * @param Cache $cache
+	 * @param ModMapper $modMapper
+	 */
 	public function __construct(Cache $cache, ModMapper $modMapper)
 	{
 		$this->cache = $cache;
 		$this->modMapper = $modMapper;
 	}
 
+	/**
+	 * Loads all versions, caches them and in case that
+	 * cache was made recently, it reads from cache
+	 *
+	 * @return array
+	 */
 	public function getVersions() {
 
 		/**
