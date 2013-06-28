@@ -54,7 +54,7 @@ class ModLoader {
 		$buffer_count = count($others);
 
 		for($i = 0; $i < $count; $i++) {
-			if($i < $start || $i > $start + $count)
+			if($i < $start || $i > $start + $buffer_count)
 				unset($others[$i]);
 		}
 
