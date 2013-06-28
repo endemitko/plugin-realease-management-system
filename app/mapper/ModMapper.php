@@ -6,6 +6,7 @@
  * 
  */
 
+namespace app\mapper;
 
 class ModMapper {
 	/**

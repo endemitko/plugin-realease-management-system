@@ -6,9 +6,15 @@
  * 
  */
 
-require "Cache.php";
-require "ModMapper.php";
-require "ModLoader.php";
+namespace app\core;
+
+require BASE_DIR . "/app/cache/Cache.php";
+require BASE_DIR . "/app/mapper/ModMapper.php";
+require BASE_DIR . "/app/versioning/ModLoader.php";
+
+use app\cache\Cache;
+use app\mapper\ModMapper;
+use app\versioning\ModLoader;
 
 class ServiceLocator {
 	private $cache;

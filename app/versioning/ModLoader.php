@@ -6,6 +6,11 @@
  * 
  */
 
+namespace app\versioning;
+
+use app\cache\Cache;
+use app\mapper\ModMapper;
+
 class ModLoader {
 
 	/**
@@ -31,11 +36,11 @@ class ModLoader {
 	 * Loads all versions, caches them and in case that
 	 * cache was made recently, it reads from cache
 	 *
-	 * @param int $count how many versions to show
+	 * @param int $count how many versions to show (-1 = all)
 	 * @param int $start
 	 * @return array
 	 */
-	public function getVersions($count, $start = 0) {
+	public function getVersions($count = -1, $start = 0) {
 
 		/**
 		 * Load from cache
@@ -50,14 +55,15 @@ class ModLoader {
 
 		$others = array_values($files);
 
-		// buffer count so it must not count every loop
-		$buffer_count = count($others);
+		if($count !== -1) {
+			// buffer count so it must not count every loop
+			$buffer_count = count($others);
 
-		for($i = 0; $i < $count; $i++) {
-			if($i < $start || $i > $start + $buffer_count)
-				unset($others[$i]);
+			for($i = 0; $i < $count; $i++) {
+				if($i < $start || $i > $start + $buffer_count)
+					unset($others[$i]);
+			}
 		}
-
 		return array("latest" => $latest, "others" => $others);
 	}
 }

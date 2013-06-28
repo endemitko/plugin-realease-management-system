@@ -1,16 +1,16 @@
 <?php
 
-require "ServiceLocator.php";
+use app\core\ServiceLocator;
 
-DEFINE("BASE_DIR", __DIR__);
+DEFINE("BASE_DIR", __DIR__ . "/../");
+
+require BASE_DIR . "/app/core/ServiceLocator.php";
 
 $serviceLocator = new ServiceLocator();
 
 $files = $serviceLocator->getModLoader();
 
 $versions = $files->getVersions();
-
-
 ?>
 
 <html>

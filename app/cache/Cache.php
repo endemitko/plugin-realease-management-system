@@ -6,6 +6,10 @@
  * 
  */
 
+namespace app\cache;
+
+use app\mapper\ModMapper;
+
 class Cache {
 
 	const EXPIRATION_TIME = 3600;
