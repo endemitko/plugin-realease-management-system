@@ -56,7 +56,9 @@ class Cache {
 		if(!$this->cacheFileExists($this->getPath() || $this->hasExpired())) {
 			$contents = $this->modMapper->getVersionsFromDisk();
 
-			file_put_contents($this->getPath(), json_encode($contents));
+			$handle = fopen($this->getPath(), "w+");
+			fwrite($handle, json_encode($contents));
+			fclose($handle);
 
 			/**
 			 * In case of failure (file lock, permission deny, ...)
@@ -64,6 +66,11 @@ class Cache {
 			 */
 			return $contents;
 		}
+
+
+		$handle = fopen($this->getPath(), "w+");
+		$content = fread($handle, filesize($this->getPath()));
+		fclose($handle);
 
 		return json_decode(file_get_contents($this->getPath()));
 	}
